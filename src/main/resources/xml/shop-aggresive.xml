@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommerceSnapshot>
+    <SnapshotId>X900</SnapshotId>
+    <GeneratedAt>2026-04-23T08:15:00</GeneratedAt>
+    <Origin>AltStore</Origin>
+
+    <Customers>
+        <Customer>
+            <Id>C001</Id>
+            <Category>guest</Category>
+            <Name>Adam Stone</Name>
+            <Email>adam_new@example.com</Email>
+            <Status>blocked</Status>
+            <Address>
+                <Street>Maple Street 10</Street>
+                <City>Warsaw</City>
+                <PostalCode>00-101</PostalCode>
+                <CountryCode>PL</CountryCode>
+            </Address>
+            <Flags>
+                <Flag>manual_review</Flag>
+            </Flags>
+        </Customer>
+        <Customer>
+            <Id>C009</Id>
+            <Category>partner</Category>
+            <Name>Nora Vale</Name>
+            <Email>nora@example.com</Email>
+            <Status>active</Status>
+            <Address>
+                <Street>Hill Street 3</Street>
+                <City>Lodz</City>
+                <PostalCode>90-100</PostalCode>
+                <CountryCode>PL</CountryCode>
+            </Address>
+            <Flags>
+                <Flag>priority</Flag>
+            </Flags>
+        </Customer>
+    </Customers>
+
+    <Transactions>
+        <Transaction>
+            <Id>O1001</Id>
+            <State>closed</State>
+            <Source>api</Source>
+            <OpenedAt>2026-04-23T07:00:00</OpenedAt>
+
+            <CustomerRef>
+                <Id>C001</Id>
+                <Type>guest</Type>
+            </CustomerRef>
+
+            <Invoice>
+                <Address>
+                    <Street>Maple Street 10</Street>
+                    <City>Warsaw</City>
+                    <PostalCode>00-101</PostalCode>
+                    <CountryCode>PL</CountryCode>
+                </Address>
+                <TaxInfo>
+                    <Code>VAT23</Code>
+                    <Rate>23</Rate>
+                    <Region>EU</Region>
+                </TaxInfo>
+            </Invoice>
+
+            <Products>
+                <Item>
+                    <Id>I001</Id>
+                    <Name>Keyboard</Name>
+                    <Group>device</Group>
+                    <Quantity>5</Quantity>
+                    <Price>130.00</Price>
+                    <Status>archived</Status>
+                </Item>
+                <Item>
+                    <Id>I099</Id>
+                    <Name>Camera</Name>
+                    <Group>device</Group>
+                    <Quantity>1</Quantity>
+                    <Price>400.00</Price>
+                    <Status>active</Status>
+                </Item>
+            </Products>
+
+            <Charges>
+                <Charge>
+                    <Id>P9001</Id>
+                    <Method>card</Method>
+                    <State>reversed</State>
+                    <Amount>650.00</Amount>
+                    <Currency>EUR</Currency>
+                </Charge>
+            </Charges>
+
+            <Shipments>
+                <Shipment>
+                    <Id>S3001</Id>
+                    <Type>courier</Type>
+                    <Status>returned</Status>
+                    <Address>
+                        <Street>Maple Street 10</Street>
+                        <City>Warsaw</City>
+                        <PostalCode>00-101</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+            </Shipments>
+
+            <Audit>
+                <CreatedBy>system</CreatedBy>
+                <Reason>migration</Reason>
+            </Audit>
+
+            <Summary>
+                <ItemCount>6</ItemCount>
+                <TotalAmount>650.00</TotalAmount>
+                <Currency>EUR</Currency>
+            </Summary>
+        </Transaction>
+
+        <Transaction>
+            <Id>T777</Id>
+            <State>open</State>
+            <Source>manual</Source>
+            <OpenedAt>2026-04-23T07:30:00</OpenedAt>
+
+            <CustomerRef>
+                <Id>C009</Id>
+                <Type>partner</Type>
+            </CustomerRef>
+
+            <Invoice>
+                <Address>
+                    <Street>Hill Street 3</Street>
+                    <City>Lodz</City>
+                    <PostalCode>90-100</PostalCode>
+                    <CountryCode>PL</CountryCode>
+                </Address>
+                <TaxInfo>
+                    <Code>VAT05</Code>
+                    <Rate>5</Rate>
+                    <Region>EU</Region>
+                </TaxInfo>
+            </Invoice>
+
+            <Products>
+                <Item>
+                    <Id>I500</Id>
+                    <Name>Dock</Name>
+                    <Group>access</Group>
+                    <Quantity>2</Quantity>
+                    <Price>75.00</Price>
+                    <Status>active</Status>
+                </Item>
+            </Products>
+
+            <Charges>
+                <Charge>
+                    <Id>P9999</Id>
+                    <Method>crypto</Method>
+                    <State>pending</State>
+                    <Amount>150.00</Amount>
+                    <Currency>USD</Currency>
+                </Charge>
+            </Charges>
+
+            <DeliveryPlan>
+                <Window>
+                    <From>2026-04-24</From>
+                    <To>2026-04-26</To>
+                </Window>
+                <Code>D55</Code>
+            </DeliveryPlan>
+
+            <Summary>
+                <ItemCount>2</ItemCount>
+                <TotalAmount>150.00</TotalAmount>
+                <Currency>USD</Currency>
+            </Summary>
+        </Transaction>
+    </Transactions>
+
+    <Config>
+        <Version>2.5</Version>
+        <Mode>snapshot</Mode>
+        <Status>draft</Status>
+    </Config>
+</CommerceSnapshot>

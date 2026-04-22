@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OrderBatch>
+    <BatchId>B002</BatchId>
+    <CreatedAt>2026-04-22T11:00:00</CreatedAt>
+    <SourceSystem>ShopCore</SourceSystem>
+
+    <Customers>
+        <Customer>
+            <Id>C001</Id>
+            <Type>regular</Type>
+            <Name>Adam Stone</Name>
+            <Email>adam@example.com</Email>
+            <Phone>500100200</Phone>
+            <Status>active</Status>
+            <Address>
+                <Street>Maple Street 10</Street>
+                <City>Warsaw</City>
+                <PostalCode>00-101</PostalCode>
+                <CountryCode>PL</CountryCode>
+            </Address>
+        </Customer>
+        <Customer>
+            <Id>C002</Id>
+            <Type>vip</Type>
+            <Name>Ewa Reed</Name>
+            <Email>ewa@example.com</Email>
+            <Phone>500300400</Phone>
+            <Status>active</Status>
+            <Address>
+                <Street>River Road 5</Street>
+                <City>Krakow</City>
+                <PostalCode>30-002</PostalCode>
+                <CountryCode>PL</CountryCode>
+            </Address>
+        </Customer>
+        <Customer>
+            <Id>C003</Id>
+            <Type>regular</Type>
+            <Name>Leo Hart</Name>
+            <Email>leo@example.com</Email>
+            <Phone>500500600</Phone>
+            <Status>inactive</Status>
+            <Address>
+                <Street>Forest Lane 7</Street>
+                <City>Gdansk</City>
+                <PostalCode>80-010</PostalCode>
+                <CountryCode>PL</CountryCode>
+            </Address>
+        </Customer>
+        <Customer>
+            <Id>C004</Id>
+            <Type>business</Type>
+            <Name>Mila North</Name>
+            <Email>mila@example.com</Email>
+            <Phone>500700800</Phone>
+            <Status>active</Status>
+            <Address>
+                <Street>Lake Avenue 12</Street>
+                <City>Poznan</City>
+                <PostalCode>60-100</PostalCode>
+                <CountryCode>PL</CountryCode>
+            </Address>
+        </Customer>
+    </Customers>
+
+    <Orders>
+        <Order>
+            <Id>O1001</Id>
+            <Status>new</Status>
+            <Channel>web</Channel>
+            <CreatedAt>2026-04-22T09:30:00</CreatedAt>
+
+            <CustomerRef>
+                <Id>C001</Id>
+                <Type>regular</Type>
+            </CustomerRef>
+
+            <Billing>
+                <Address>
+                    <Street>Maple Street 10</Street>
+                    <City>Warsaw</City>
+                    <PostalCode>00-101</PostalCode>
+                    <CountryCode>PL</CountryCode>
+                </Address>
+                <Tax>
+                    <Code>VAT23</Code>
+                    <Rate>23</Rate>
+                </Tax>
+            </Billing>
+
+            <Items>
+                <Item>
+                    <Id>I001</Id>
+                    <Name>Keyboard</Name>
+                    <Type>hardware</Type>
+                    <Quantity>1</Quantity>
+                    <Price>120.00</Price>
+                    <Status>available</Status>
+                </Item>
+                <Item>
+                    <Id>I002</Id>
+                    <Name>Mouse</Name>
+                    <Type>hardware</Type>
+                    <Quantity>2</Quantity>
+                    <Price>60.00</Price>
+                    <Status>available</Status>
+                </Item>
+                <Item>
+                    <Id>I005</Id>
+                    <Name>Pad</Name>
+                    <Type>accessory</Type>
+                    <Quantity>1</Quantity>
+                    <Price>40.00</Price>
+                    <Status>available</Status>
+                </Item>
+                <Item>
+                    <Id>I006</Id>
+                    <Name>Stand</Name>
+                    <Type>accessory</Type>
+                    <Quantity>1</Quantity>
+                    <Price>70.00</Price>
+                    <Status>available</Status>
+                </Item>
+            </Items>
+
+            <Payments>
+                <Payment>
+                    <Id>P9001</Id>
+                    <Type>card</Type>
+                    <Status>confirmed</Status>
+                    <Amount>240.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+                <Payment>
+                    <Id>P9002</Id>
+                    <Type>voucher</Type>
+                    <Status>used</Status>
+                    <Amount>20.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+                <Payment>
+                    <Id>P9005</Id>
+                    <Type>gift_card</Type>
+                    <Status>used</Status>
+                    <Amount>15.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+                <Payment>
+                    <Id>P9006</Id>
+                    <Type>points</Type>
+                    <Status>used</Status>
+                    <Amount>5.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+            </Payments>
+
+            <Shipments>
+                <Shipment>
+                    <Id>S3001</Id>
+                    <Type>courier</Type>
+                    <Status>packed</Status>
+                    <Address>
+                        <Street>Maple Street 10</Street>
+                        <City>Warsaw</City>
+                        <PostalCode>00-101</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+                <Shipment>
+                    <Id>S3002</Id>
+                    <Type>pickup</Type>
+                    <Status>ready</Status>
+                    <Address>
+                        <Street>Central Point 1</Street>
+                        <City>Warsaw</City>
+                        <PostalCode>00-950</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+                <Shipment>
+                    <Id>S3005</Id>
+                    <Type>locker</Type>
+                    <Status>created</Status>
+                    <Address>
+                        <Street>Locker West 3</Street>
+                        <City>Warsaw</City>
+                        <PostalCode>00-951</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+                <Shipment>
+                    <Id>S3006</Id>
+                    <Type>courier</Type>
+                    <Status>waiting</Status>
+                    <Address>
+                        <Street>Maple Street 10</Street>
+                        <City>Warsaw</City>
+                        <PostalCode>00-101</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+            </Shipments>
+
+            <Notifications>
+                <Notification>
+                    <Type>email</Type>
+                    <Status>sent</Status>
+                    <Code>N100</Code>
+                </Notification>
+            </Notifications>
+
+            <Summary>
+                <ItemCount>5</ItemCount>
+                <TotalAmount>290.00</TotalAmount>
+                <Currency>PLN</Currency>
+            </Summary>
+        </Order>
+
+        <Order>
+            <Id>O1002</Id>
+            <Status>processing</Status>
+            <Channel>mobile</Channel>
+            <CreatedAt>2026-04-22T09:45:00</CreatedAt>
+
+            <CustomerRef>
+                <Id>C002</Id>
+                <Type>vip</Type>
+            </CustomerRef>
+
+            <Billing>
+                <Address>
+                    <Street>River Road 5</Street>
+                    <City>Krakow</City>
+                    <PostalCode>30-002</PostalCode>
+                    <CountryCode>PL</CountryCode>
+                </Address>
+                <Tax>
+                    <Code>VAT08</Code>
+                    <Rate>8</Rate>
+                </Tax>
+            </Billing>
+
+            <Items>
+                <Item>
+                    <Id>I003</Id>
+                    <Name>Monitor</Name>
+                    <Type>hardware</Type>
+                    <Quantity>1</Quantity>
+                    <Price>800.00</Price>
+                    <Status>reserved</Status>
+                </Item>
+                <Item>
+                    <Id>I004</Id>
+                    <Name>Cable</Name>
+                    <Type>accessory</Type>
+                    <Quantity>3</Quantity>
+                    <Price>20.00</Price>
+                    <Status>available</Status>
+                </Item>
+                <Item>
+                    <Id>I007</Id>
+                    <Name>Adapter</Name>
+                    <Type>accessory</Type>
+                    <Quantity>1</Quantity>
+                    <Price>35.00</Price>
+                    <Status>available</Status>
+                </Item>
+                <Item>
+                    <Id>I008</Id>
+                    <Name>Webcam</Name>
+                    <Type>hardware</Type>
+                    <Quantity>1</Quantity>
+                    <Price>150.00</Price>
+                    <Status>reserved</Status>
+                </Item>
+            </Items>
+
+            <Payments>
+                <Payment>
+                    <Id>P9003</Id>
+                    <Type>bank_transfer</Type>
+                    <Status>pending</Status>
+                    <Amount>860.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+                <Payment>
+                    <Id>P9004</Id>
+                    <Type>points</Type>
+                    <Status>used</Status>
+                    <Amount>10.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+                <Payment>
+                    <Id>P9007</Id>
+                    <Type>card</Type>
+                    <Status>confirmed</Status>
+                    <Amount>100.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+                <Payment>
+                    <Id>P9008</Id>
+                    <Type>gift_card</Type>
+                    <Status>used</Status>
+                    <Amount>25.00</Amount>
+                    <Currency>PLN</Currency>
+                </Payment>
+            </Payments>
+
+            <Shipments>
+                <Shipment>
+                    <Id>S3003</Id>
+                    <Type>courier</Type>
+                    <Status>waiting</Status>
+                    <Address>
+                        <Street>River Road 5</Street>
+                        <City>Krakow</City>
+                        <PostalCode>30-002</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+                <Shipment>
+                    <Id>S3004</Id>
+                    <Type>locker</Type>
+                    <Status>created</Status>
+                    <Address>
+                        <Street>Locker Zone 8</Street>
+                        <City>Krakow</City>
+                        <PostalCode>30-099</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+                <Shipment>
+                    <Id>S3007</Id>
+                    <Type>pickup</Type>
+                    <Status>ready</Status>
+                    <Address>
+                        <Street>Market Spot 2</Street>
+                        <City>Krakow</City>
+                        <PostalCode>30-120</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+                <Shipment>
+                    <Id>S3008</Id>
+                    <Type>courier</Type>
+                    <Status>packed</Status>
+                    <Address>
+                        <Street>River Road 5</Street>
+                        <City>Krakow</City>
+                        <PostalCode>30-002</PostalCode>
+                        <CountryCode>PL</CountryCode>
+                    </Address>
+                </Shipment>
+            </Shipments>
+
+            <Notifications>
+                <Notification>
+                    <Type>sms</Type>
+                    <Status>queued</Status>
+                    <Code>N200</Code>
+                </Notification>
+            </Notifications>
+
+            <Summary>
+                <ItemCount>6</ItemCount>
+                <TotalAmount>970.00</TotalAmount>
+                <Currency>PLN</Currency>
+            </Summary>
+        </Order>
+    </Orders>
+</OrderBatch>

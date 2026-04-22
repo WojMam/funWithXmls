@@ -1,0 +1,31 @@
+<root>
+    <testa>
+        <cd>A1</cd>
+    </testa>
+    <testbb>
+        <cd>B2</cd>
+    </testbb>
+    <users>
+        <user>
+            <name>Krzysztof</name>
+            <secondname>Marianski</secondname>
+        </user>
+        <user>
+            <name>Tomek</name>
+            <secondname>Kowalski</secondname>
+        </user>
+        <user>
+            <name>Ania</name>
+            <secondname>Nowak</secondname>
+        </user>
+        <user>
+            <name>Julia</name>
+            <secondname>Zielinska</secondname>
+        </user>
+    </users>
+    <order>
+        <id>1001</id>
+        <status>NEW</status>
+        <total>250.00</total>
+    </order>
+</root>
