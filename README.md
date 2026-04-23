@@ -23,3 +23,21 @@ mvn exec:java -Dexec.args="xml/sample-left.xml xml/sample-right.xml STRUCTURE_AN
 Wynikowy raport zostanie zapisany do:
 
 `target/reports/comparison.html`
+
+## Użycie jako biblioteka/helper
+
+Możesz użyć fasady `XmlComparisonFacade`, bez pracy na `resources` i bez zapisu do pliku:
+
+```java
+XmlComparisonFacade facade = new XmlComparisonFacade();
+ComparisonResult result = facade.compare(leftInputStream, rightInputStream, ComparisonMode.STRUCTURE_AND_VALUES);
+String html = facade.renderHtml(result);
+```
+
+Dostępna jest też metoda łączona:
+
+```java
+String html = facade.compareAndRender(leftInputStream, rightInputStream, ComparisonMode.STRUCTURE_ONLY);
+```
+
+Jeśli chcesz zapisać HTML do pliku, użyj adaptera infrastrukturalnego `FileHtmlReportWriter`.
