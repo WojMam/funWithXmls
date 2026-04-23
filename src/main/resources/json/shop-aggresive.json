@@ -1,0 +1,174 @@
+{
+    "commerceSnapshot": {
+      "snapshotId": "X900",
+      "generatedAt": "2026-04-23T08:15:00",
+      "origin": "AltStore",
+      "customers": [
+        {
+          "id": "C001",
+          "category": "guest",
+          "name": "Adam Stone",
+          "email": "adam_new@example.com",
+          "status": "blocked",
+          "address": {
+            "street": "Maple Street 10",
+            "city": "Warsaw",
+            "postalCode": "00-101",
+            "countryCode": "PL"
+          },
+          "flags": [
+            "manual_review"
+          ]
+        },
+        {
+          "id": "C009",
+          "category": "partner",
+          "name": "Nora Vale",
+          "email": "nora@example.com",
+          "status": "active",
+          "address": {
+            "street": "Hill Street 3",
+            "city": "Lodz",
+            "postalCode": "90-100",
+            "countryCode": "PL"
+          },
+          "flags": [
+            "priority"
+          ]
+        }
+      ],
+      "transactions": [
+        {
+          "id": "O1001",
+          "state": "closed",
+          "source": "api",
+          "openedAt": "2026-04-23T07:00:00",
+          "customerRef": {
+            "id": "C001",
+            "type": "guest"
+          },
+          "invoice": {
+            "address": {
+              "street": "Maple Street 10",
+              "city": "Warsaw",
+              "postalCode": "00-101",
+              "countryCode": "PL"
+            },
+            "taxInfo": {
+              "code": "VAT23",
+              "rate": 23,
+              "region": "EU"
+            }
+          },
+          "products": [
+            {
+              "id": "I001",
+              "name": "Keyboard",
+              "group": "device",
+              "quantity": 5,
+              "price": 130.0,
+              "status": "archived"
+            },
+            {
+              "id": "I099",
+              "name": "Camera",
+              "group": "device",
+              "quantity": 1,
+              "price": 400.0,
+              "status": "active"
+            }
+          ],
+          "charges": [
+            {
+              "id": "P9001",
+              "method": "card",
+              "state": "reversed",
+              "amount": 650.0,
+              "currency": "EUR"
+            }
+          ],
+          "shipments": [
+            {
+              "id": "S3001",
+              "type": "courier",
+              "status": "returned",
+              "address": {
+                "street": "Maple Street 10",
+                "city": "Warsaw",
+                "postalCode": "00-101",
+                "countryCode": "PL"
+              }
+            }
+          ],
+          "audit": {
+            "createdBy": "system",
+            "reason": "migration"
+          },
+          "summary": {
+            "itemCount": 6,
+            "totalAmount": 650.0,
+            "currency": "EUR"
+          }
+        },
+        {
+          "id": "T777",
+          "state": "open",
+          "source": "manual",
+          "openedAt": "2026-04-23T07:30:00",
+          "customerRef": {
+            "id": "C009",
+            "type": "partner"
+          },
+          "invoice": {
+            "address": {
+              "street": "Hill Street 3",
+              "city": "Lodz",
+              "postalCode": "90-100",
+              "countryCode": "PL"
+            },
+            "taxInfo": {
+              "code": "VAT05",
+              "rate": 5,
+              "region": "EU"
+            }
+          },
+          "products": [
+            {
+              "id": "I500",
+              "name": "Dock",
+              "group": "access",
+              "quantity": 2,
+              "price": 75.0,
+              "status": "active"
+            }
+          ],
+          "charges": [
+            {
+              "id": "P9999",
+              "method": "crypto",
+              "state": "pending",
+              "amount": 150.0,
+              "currency": "USD"
+            }
+          ],
+          "deliveryPlan": {
+            "window": {
+              "from": "2026-04-24",
+              "to": "2026-04-26"
+            },
+            "code": "D55"
+          },
+          "summary": {
+            "itemCount": 2,
+            "totalAmount": 150.0,
+            "currency": "USD"
+          }
+        }
+      ],
+      "config": {
+        "version": "2.5",
+        "mode": "snapshot",
+        "status": "draft"
+      }
+    }
+  }

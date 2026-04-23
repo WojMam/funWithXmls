@@ -1,11 +1,11 @@
-package pl.wojma.funwithxmls.infrastructure;
+package pl.wojma.funwithxmls.adapters.report;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import pl.wojma.funwithxmls.application.HtmlReportWriter;
+import pl.wojma.funwithxmls.core.ports.HtmlReportWriter;
 
 /**
  * Zapisuje raport HTML do pliku w systemie plików.

@@ -11,8 +11,8 @@ import pl.wojma.funwithxmls.domain.ComparisonResult;
 import pl.wojma.funwithxmls.domain.DifferenceType;
 import pl.wojma.funwithxmls.domain.FieldDifference;
 import pl.wojma.funwithxmls.domain.OccurrenceStat;
-import pl.wojma.funwithxmls.domain.XmlNode;
-import pl.wojma.funwithxmls.infrastructure.SmartXmlComparator;
+import pl.wojma.funwithxmls.adapters.compare.SmartXmlComparator;
+import pl.wojma.funwithxmls.core.model.StructuredNode;
 
 /**
  * Testy jednostkowe silnika porównania XML.
@@ -22,10 +22,10 @@ class SmartXmlComparatorTest {
 
     @Test
     void shouldTreatNestedFieldsWithSameLeafNameAsDifferentPaths() {
-        XmlNode left = node("root",
+        StructuredNode left = node("root",
                 node("testa", node("cd", "A")),
                 node("testbb", node("cd", "B")));
-        XmlNode right = node("root",
+        StructuredNode right = node("root",
                 node("testa", node("cd", "A")),
                 node("testbb", node("cd", "B")));
 
@@ -37,10 +37,10 @@ class SmartXmlComparatorTest {
 
     @Test
     void shouldDetectOrderDifferenceInValuesMode() {
-        XmlNode left = node("root", node("users",
+        StructuredNode left = node("root", node("users",
                 node("user", node("name", "Tomek")),
                 node("user", node("name", "Krzysztof"))));
-        XmlNode right = node("root", node("users",
+        StructuredNode right = node("root", node("users",
                 node("user", node("name", "Krzysztof")),
                 node("user", node("name", "Tomek"))));
 
@@ -52,10 +52,10 @@ class SmartXmlComparatorTest {
 
     @Test
     void shouldTrackRepeatedObjectOccurrenceDifferenceSeparatelyFromStructure() {
-        XmlNode left = node("root", node("users",
+        StructuredNode left = node("root", node("users",
                 node("user", node("name", "Tomek")),
                 node("user", node("name", "Krzysztof"))));
-        XmlNode right = node("root", node("users",
+        StructuredNode right = node("root", node("users",
                 node("user", node("name", "Tomek")),
                 node("user", node("name", "Krzysztof")),
                 node("user", node("name", "Ania"))));
@@ -73,8 +73,8 @@ class SmartXmlComparatorTest {
 
     @Test
     void shouldDetectStrictValueDifference() {
-        XmlNode left = node("root", node("status", "NEW"));
-        XmlNode right = node("root", node("status", "new"));
+        StructuredNode left = node("root", node("status", "NEW"));
+        StructuredNode right = node("root", node("status", "new"));
 
         ComparisonResult result = comparator.compare(left, right, "left", "right", ComparisonMode.STRUCTURE_AND_VALUES);
         FieldDifference difference = byPath(result.fieldDifferences(), "root/status");
@@ -84,8 +84,8 @@ class SmartXmlComparatorTest {
 
     @Test
     void shouldBuildConsistentSummaryMetrics() {
-        XmlNode left = node("root", node("a", "1"), node("b", "2"));
-        XmlNode right = node("root", node("a", "1"), node("c", "3"));
+        StructuredNode left = node("root", node("a", "1"), node("b", "2"));
+        StructuredNode right = node("root", node("a", "1"), node("c", "3"));
 
         ComparisonResult result = comparator.compare(left, right, "left", "right", ComparisonMode.STRUCTURE_AND_VALUES);
 
@@ -105,11 +105,11 @@ class SmartXmlComparatorTest {
                 .orElseThrow();
     }
 
-    private XmlNode node(String name, XmlNode... children) {
-        return new XmlNode(name, null, Map.of(), List.of(children));
+    private StructuredNode node(String name, StructuredNode... children) {
+        return new StructuredNode(name, null, Map.of(), List.of(children));
     }
 
-    private XmlNode node(String name, String value) {
-        return new XmlNode(name, value, Map.of(), List.of());
+    private StructuredNode node(String name, String value) {
+        return new StructuredNode(name, value, Map.of(), List.of());
     }
 }

@@ -1,16 +1,18 @@
-package pl.wojma.funwithxmls.application;
+package pl.wojma.funwithxmls.core.usecase;
 
 import java.io.InputStream;
+import pl.wojma.funwithxmls.core.model.StructuredNode;
+import pl.wojma.funwithxmls.core.ports.StructuredComparator;
+import pl.wojma.funwithxmls.core.ports.StructuredDocumentParser;
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
-import pl.wojma.funwithxmls.domain.XmlNode;
 
 /**
  * Przypadek użycia odpowiedzialny za porównanie dwóch strumieni XML.
  */
 public class CompareXmlUseCase {
-    private final XmlDocumentParser documentParser;
-    private final XmlComparator xmlComparator;
+    private final StructuredDocumentParser documentParser;
+    private final StructuredComparator comparator;
 
     /**
      * Tworzy przypadek użycia porównania XML.
@@ -19,11 +21,11 @@ public class CompareXmlUseCase {
      * @param xmlComparator silnik porównania
      */
     public CompareXmlUseCase(
-            XmlDocumentParser documentParser,
-            XmlComparator xmlComparator
+            StructuredDocumentParser documentParser,
+            StructuredComparator comparator
     ) {
         this.documentParser = documentParser;
-        this.xmlComparator = xmlComparator;
+        this.comparator = comparator;
     }
 
     /**
@@ -43,8 +45,8 @@ public class CompareXmlUseCase {
             String rightSource,
             ComparisonMode mode
     ) {
-        XmlNode leftNode = documentParser.parse(leftStream);
-        XmlNode rightNode = documentParser.parse(rightStream);
-        return xmlComparator.compare(leftNode, rightNode, leftSource, rightSource, mode);
+        StructuredNode leftNode = documentParser.parse(leftStream);
+        StructuredNode rightNode = documentParser.parse(rightStream);
+        return comparator.compare(leftNode, rightNode, leftSource, rightSource, mode);
     }
 }

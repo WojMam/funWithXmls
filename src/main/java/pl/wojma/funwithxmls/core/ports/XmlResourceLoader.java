@@ -1,4 +1,4 @@
-package pl.wojma.funwithxmls.application;
+package pl.wojma.funwithxmls.core.ports;
 
 import java.io.InputStream;
 

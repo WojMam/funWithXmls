@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
-import pl.wojma.funwithxmls.entrypoint.XmlComparisonService;
+import pl.wojma.funwithxmls.services.XmlComparisonService;
 
 /**
  * Testy kompatybilności scenariusza plikowego używanego przez CLI.

@@ -1,4 +1,4 @@
-package pl.wojma.funwithxmls.infrastructure;
+package pl.wojma.funwithxmls.adapters.xml;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -8,8 +8,8 @@ import java.util.Map;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import pl.wojma.funwithxmls.application.XmlDocumentParser;
-import pl.wojma.funwithxmls.domain.XmlNode;
+import pl.wojma.funwithxmls.core.model.StructuredNode;
+import pl.wojma.funwithxmls.core.ports.XmlDocumentParser;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -21,7 +21,7 @@ import org.w3c.dom.NodeList;
  */
 public class DomXmlDocumentParser implements XmlDocumentParser {
     @Override
-    public XmlNode parse(InputStream inputStream) {
+    public StructuredNode parse(InputStream inputStream) {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             factory.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
@@ -39,7 +39,7 @@ public class DomXmlDocumentParser implements XmlDocumentParser {
         }
     }
 
-    private XmlNode mapElement(Element element) {
+    private StructuredNode mapElement(Element element) {
         Map<String, String> attributes = new LinkedHashMap<>();
         NamedNodeMap namedNodeMap = element.getAttributes();
         for (int index = 0; index < namedNodeMap.getLength(); index++) {
@@ -47,7 +47,7 @@ public class DomXmlDocumentParser implements XmlDocumentParser {
             attributes.put(attribute.getNodeName(), attribute.getNodeValue());
         }
 
-        List<XmlNode> children = new ArrayList<>();
+        List<StructuredNode> children = new ArrayList<>();
         StringBuilder ownText = new StringBuilder();
         NodeList nodeList = element.getChildNodes();
         for (int index = 0; index < nodeList.getLength(); index++) {
@@ -63,6 +63,6 @@ public class DomXmlDocumentParser implements XmlDocumentParser {
         }
 
         String value = ownText.isEmpty() ? null : ownText.toString();
-        return new XmlNode(element.getTagName(), value, attributes, children);
+        return new StructuredNode(element.getTagName(), value, attributes, children);
     }
 }

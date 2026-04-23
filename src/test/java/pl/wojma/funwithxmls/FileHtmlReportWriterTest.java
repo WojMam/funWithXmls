@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
-import pl.wojma.funwithxmls.infrastructure.FileHtmlReportWriter;
+import pl.wojma.funwithxmls.adapters.report.FileHtmlReportWriter;
 
 /**
  * Testy zapisu raportu HTML do pliku.

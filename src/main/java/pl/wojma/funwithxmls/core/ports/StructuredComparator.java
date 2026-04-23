@@ -1,15 +1,15 @@
-package pl.wojma.funwithxmls.application;
+package pl.wojma.funwithxmls.core.ports;
 
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
-import pl.wojma.funwithxmls.domain.XmlNode;
+import pl.wojma.funwithxmls.core.model.StructuredNode;
 
 /**
- * Port silnika porównującego dwa drzewa XML.
+ * Port silnika porównującego dwa dokumenty strukturalne.
  */
-public interface XmlComparator {
+public interface StructuredComparator {
     /**
-     * Wykonuje porównanie dwóch dokumentów XML.
+     * Wykonuje porównanie dwóch dokumentów.
      *
      * @param left pierwszy dokument
      * @param right drugi dokument
@@ -18,5 +18,5 @@ public interface XmlComparator {
      * @param mode tryb porównania
      * @return wynik porównania
      */
-    ComparisonResult compare(XmlNode left, XmlNode right, String leftSource, String rightSource, ComparisonMode mode);
+    ComparisonResult compare(StructuredNode left, StructuredNode right, String leftSource, String rightSource, ComparisonMode mode);
 }

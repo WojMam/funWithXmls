@@ -1,5 +1,6 @@
-package pl.wojma.funwithxmls.application;
+package pl.wojma.funwithxmls.core.usecase;
 
+import pl.wojma.funwithxmls.core.ports.ReportRenderer;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
 
 /**

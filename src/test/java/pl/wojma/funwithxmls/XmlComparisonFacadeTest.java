@@ -8,7 +8,7 @@ import java.nio.charset.StandardCharsets;
 import org.junit.jupiter.api.Test;
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
-import pl.wojma.funwithxmls.entrypoint.XmlComparisonFacade;
+import pl.wojma.funwithxmls.services.XmlComparisonFacade;
 
 /**
  * Testy publicznej fasady bibliotecznej do porównywania XML.
@@ -21,7 +21,7 @@ class XmlComparisonFacadeTest {
         ByteArrayInputStream left = stream("<root><status>NEW</status></root>");
         ByteArrayInputStream right = stream("<root><status>NEW</status></root>");
 
-        ComparisonResult result = facade.compare(left, right, ComparisonMode.STRUCTURE_AND_VALUES);
+        ComparisonResult result = facade.compareXml(left, right, ComparisonMode.STRUCTURE_AND_VALUES);
 
         assertEquals(ComparisonMode.STRUCTURE_AND_VALUES, result.mode());
         assertTrue(result.summary().matchingFields() >= 2);
@@ -29,13 +29,14 @@ class XmlComparisonFacadeTest {
 
     @Test
     void shouldRenderHtmlFromComparisonResult() {
-        ComparisonResult result = facade.compare(
+        ComparisonResult result = facade.compareXml(
                 stream("<root><status>NEW</status></root>"),
                 stream("<root><status>OLD</status></root>"),
                 "left-memory",
                 "right-memory",
                 ComparisonMode.STRUCTURE_AND_VALUES
         );
+        
 
         String html = facade.renderHtml(result);
 
@@ -46,14 +47,32 @@ class XmlComparisonFacadeTest {
 
     @Test
     void shouldCompareAndRenderInSingleCall() {
-        String html = facade.compareAndRender(
+        String html = facade.compareXmlAndRender(
                 stream("<root><item>1</item></root>"),
                 stream("<root><item>2</item></root>"),
                 ComparisonMode.STRUCTURE_AND_VALUES
         );
 
-        assertTrue(html.contains("Raport porównania XML"));
+        assertTrue(html.contains("Raport porównania dokumentów"));
         assertTrue(html.contains("Różna wartość"));
+    }
+
+    @Test
+    void shouldCompareJsonWithDedicatedMethod() {
+        ComparisonResult result = facade.compareJson(
+                stream("{\"order\":{\"id\":1,\"status\":\"new\"}}"),
+                stream("{\"order\":{\"id\":1,\"status\":\"done\"}}"),
+                ComparisonMode.STRUCTURE_AND_VALUES
+        );
+
+        String html = facade.compareJsonAndRender(
+                stream("{\"items\":[{\"id\":\"a\"},{\"id\":\"b\"}]}"),
+                stream("{\"items\":[{\"id\":\"b\"},{\"id\":\"a\"}]}"),
+                ComparisonMode.STRUCTURE_AND_VALUES
+        );
+
+        assertTrue(result.summary().valueDifferences() >= 1);
+        assertTrue(html.contains("Raport porównania dokumentów"));
     }
 
     private ByteArrayInputStream stream(String xml) {

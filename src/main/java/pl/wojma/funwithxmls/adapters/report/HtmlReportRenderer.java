@@ -1,8 +1,8 @@
-package pl.wojma.funwithxmls.infrastructure;
+package pl.wojma.funwithxmls.adapters.report;
 
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import pl.wojma.funwithxmls.application.ReportRenderer;
+import pl.wojma.funwithxmls.core.ports.ReportRenderer;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
 import pl.wojma.funwithxmls.domain.DifferenceType;
 import pl.wojma.funwithxmls.domain.FieldDifference;
@@ -10,7 +10,7 @@ import pl.wojma.funwithxmls.domain.OccurrenceStat;
 import pl.wojma.funwithxmls.domain.SummaryMetrics;
 
 /**
- * Renderer tworzący nowoczesny, jednoplikowy raport HTML z porównania XML.
+ * Renderer tworzący nowoczesny, jednoplikowy raport HTML z porównania dokumentów.
  */
 public class HtmlReportRenderer implements ReportRenderer {
     private static final DateTimeFormatter DATE_TIME_FORMATTER =
@@ -21,7 +21,7 @@ public class HtmlReportRenderer implements ReportRenderer {
         StringBuilder html = new StringBuilder();
         html.append("<!DOCTYPE html><html lang=\"pl\"><head><meta charset=\"UTF-8\">")
                 .append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">")
-                .append("<title>Raport porównania XML</title>")
+                .append("<title>Raport porównania dokumentów</title>")
                 .append("<style>")
                 .append("body{font-family:Inter,Segoe UI,Arial,sans-serif;margin:0;background:#0f172a;color:#e2e8f0;}")
                 .append(".container{max-width:1200px;margin:0 auto;padding:32px 24px 48px;}")
@@ -57,11 +57,11 @@ public class HtmlReportRenderer implements ReportRenderer {
 
     private void appendHeader(StringBuilder html, ComparisonResult result) {
         html.append("<section class=\"card\">")
-                .append("<h1>Raport porównania XML</h1>")
+                .append("<h1>Raport porównania dokumentów</h1>")
                 .append("<div class=\"meta\">")
                 .append("<div><span class=\"pill\">Tryb</span><p>").append(escapeHtml(result.mode().name())).append("</p></div>")
-                .append("<div><span class=\"pill\">Plik A</span><p>").append(escapeHtml(result.leftSource())).append("</p></div>")
-                .append("<div><span class=\"pill\">Plik B</span><p>").append(escapeHtml(result.rightSource())).append("</p></div>")
+                .append("<div><span class=\"pill\">Dokument A</span><p>").append(escapeHtml(result.leftSource())).append("</p></div>")
+                .append("<div><span class=\"pill\">Dokument B</span><p>").append(escapeHtml(result.rightSource())).append("</p></div>")
                 .append("<div><span class=\"pill\">Wygenerowano</span><p>")
                 .append(escapeHtml(DATE_TIME_FORMATTER.format(result.generatedAt()))).append("</p></div>")
                 .append("</div></section>");
@@ -70,8 +70,8 @@ public class HtmlReportRenderer implements ReportRenderer {
     private void appendSummary(StringBuilder html, SummaryMetrics summary) {
         html.append("<section class=\"card\"><h2>Podsumowanie metryk</h2><div class=\"summary\">");
         appendMetric(html, "Pola zgodne", summary.matchingFields());
-        appendMetric(html, "Tylko w XML A", summary.leftOnlyFields());
-        appendMetric(html, "Tylko w XML B", summary.rightOnlyFields());
+        appendMetric(html, "Tylko w dokumencie A", summary.leftOnlyFields());
+        appendMetric(html, "Tylko w dokumencie B", summary.rightOnlyFields());
         appendMetric(html, "Różnice wartości", summary.valueDifferences());
         appendMetric(html, "Różnice kolejności", summary.orderDifferences());
         appendMetric(html, "Różnice liczności obiektów", summary.occurrenceDifferences());
@@ -150,8 +150,8 @@ public class HtmlReportRenderer implements ReportRenderer {
     private String toPolishStatus(DifferenceType type) {
         return switch (type) {
             case MATCH -> "Zgodne";
-            case LEFT_ONLY -> "Tylko w XML A";
-            case RIGHT_ONLY -> "Tylko w XML B";
+            case LEFT_ONLY -> "Tylko w dokumencie A";
+            case RIGHT_ONLY -> "Tylko w dokumencie B";
             case VALUE_MISMATCH -> "Różna wartość";
             case ORDER_DIFFERENCE -> "Różna kolejność";
         };

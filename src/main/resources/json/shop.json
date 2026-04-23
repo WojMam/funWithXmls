@@ -1,0 +1,214 @@
+{
+	"orderBatch": {
+		"batchId": "B001",
+		"createdAt": "2026-04-22T10:00:00",
+		"sourceSystem": "ShopCore",
+		"customers": [
+			{
+				"id": "C001",
+				"type": "regular",
+				"name": "Adam Stone",
+				"email": "adam@example.com",
+				"phone": "500100200",
+				"status": "active",
+				"address": {
+					"street": "Maple Street 10",
+					"city": "Warsaw",
+					"postalCode": "00-101",
+					"countryCode": "PL"
+				}
+			},
+			{
+				"id": "C002",
+				"type": "vip",
+				"name": "Ewa Reed",
+				"email": "ewa@example.com",
+				"phone": "500300400",
+				"status": "active",
+				"address": {
+					"street": "River Road 5",
+					"city": "Krakow",
+					"postalCode": "30-002",
+					"countryCode": "PL"
+				}
+			}
+		],
+		"orders": [
+			{
+				"id": "O1001",
+				"status": "new",
+				"channel": "web",
+				"createdAt": "2026-04-22T09:30:00",
+				"customerRef": {
+					"id": "C001",
+					"type": "regular"
+				},
+				"billing": {
+					"address": {
+						"street": "Maple Street 10",
+						"city": "Warsaw",
+						"postalCode": "00-101",
+						"countryCode": "PL"
+					},
+					"tax": {
+						"code": "VAT23",
+						"rate": 23
+					}
+				},
+				"items": [
+					{
+						"id": "I001",
+						"name": "Keyboard",
+						"type": "hardware",
+						"quantity": 1,
+						"price": 120.0,
+						"status": "available"
+					},
+					{
+						"id": "I002",
+						"name": "Mouse",
+						"type": "hardware",
+						"quantity": 2,
+						"price": 60.0,
+						"status": "available"
+					}
+				],
+				"payments": [
+					{
+						"id": "P9001",
+						"type": "card",
+						"status": "confirmed",
+						"amount": 240.0,
+						"currency": "PLN"
+					},
+					{
+						"id": "P9002",
+						"type": "voucher",
+						"status": "used",
+						"amount": 20.0,
+						"currency": "PLN"
+					}
+				],
+				"shipments": [
+					{
+						"id": "S3001",
+						"type": "courier",
+						"status": "packed",
+						"address": {
+							"street": "Maple Street 10",
+							"city": "Warsaw",
+							"postalCode": "00-101",
+							"countryCode": "PL"
+						}
+					},
+					{
+						"id": "S3002",
+						"type": "pickup",
+						"status": "ready",
+						"address": {
+							"street": "Central Point 1",
+							"city": "Warsaw",
+							"postalCode": "00-950",
+							"countryCode": "PL"
+						}
+					}
+				],
+				"summary": {
+					"itemCount": 3,
+					"totalAmount": 260.0,
+					"currency": "PLN"
+				}
+			},
+			{
+				"id": "O1002",
+				"status": "processing",
+				"channel": "mobile",
+				"createdAt": "2026-04-22T09:45:00",
+				"customerRef": {
+					"id": "C002",
+					"type": "vip"
+				},
+				"billing": {
+					"address": {
+						"street": "River Road 5",
+						"city": "Krakow",
+						"postalCode": "30-002",
+						"countryCode": "PL"
+					},
+					"tax": {
+						"code": "VAT08",
+						"rate": 8
+					}
+				},
+				"items": [
+					{
+						"id": "I003",
+						"name": "Monitor",
+						"type": "hardware",
+						"quantity": 1,
+						"price": 800.0,
+						"status": "reserved"
+					},
+					{
+						"id": "I004",
+						"name": "Cable",
+						"type": "accessory",
+						"quantity": 3,
+						"price": 20.0,
+						"status": "available"
+					}
+				],
+				"payments": [
+					{
+						"id": "P9003",
+						"type": "bank_transfer",
+						"status": "pending",
+						"amount": 860.0,
+						"currency": "PLN"
+					},
+					{
+						"id": "P9004",
+						"type": "points",
+						"status": "used",
+						"amount": 10.0,
+						"currency": "PLN"
+					}
+				],
+				"shipments": [
+					{
+						"id": "S3003",
+						"type": "courier",
+						"status": "waiting",
+						"address": {
+							"street": "River Road 5",
+							"city": "Krakow",
+							"postalCode": "30-002",
+							"countryCode": "PL"
+						}
+					},
+					{
+						"id": "S3004",
+						"type": "locker",
+						"status": "created",
+						"address": {
+							"street": "Locker Zone 8",
+							"city": "Krakow",
+							"postalCode": "30-099",
+							"countryCode": "PL"
+						}
+					}
+				],
+				"summary": {
+					"itemCount": 4,
+					"totalAmount": 870.0,
+					"currency": "PLN"
+				}
+			}
+		],
+		"metadata": {
+			"version": "1.0",
+			"environment": "test",
+			"status": "ready"
+		}
+	}
+}

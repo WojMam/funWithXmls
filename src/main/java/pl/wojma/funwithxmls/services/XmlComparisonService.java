@@ -1,16 +1,16 @@
-package pl.wojma.funwithxmls.entrypoint;
+package pl.wojma.funwithxmls.services;
 
-import pl.wojma.funwithxmls.application.CompareXmlRequest;
-import pl.wojma.funwithxmls.application.CompareAndSaveReportUseCase;
-import pl.wojma.funwithxmls.application.CompareXmlUseCase;
-import pl.wojma.funwithxmls.application.RenderHtmlUseCase;
+import pl.wojma.funwithxmls.adapters.compare.SmartXmlComparator;
+import pl.wojma.funwithxmls.adapters.io.DefaultXmlResourceLoader;
+import pl.wojma.funwithxmls.adapters.report.FileHtmlReportWriter;
+import pl.wojma.funwithxmls.adapters.report.HtmlReportRenderer;
+import pl.wojma.funwithxmls.adapters.xml.DomXmlDocumentParser;
+import pl.wojma.funwithxmls.core.usecase.CompareAndSaveReportUseCase;
+import pl.wojma.funwithxmls.core.usecase.CompareXmlRequest;
+import pl.wojma.funwithxmls.core.usecase.CompareXmlUseCase;
+import pl.wojma.funwithxmls.core.usecase.RenderHtmlUseCase;
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
-import pl.wojma.funwithxmls.infrastructure.DefaultXmlResourceLoader;
-import pl.wojma.funwithxmls.infrastructure.DomXmlDocumentParser;
-import pl.wojma.funwithxmls.infrastructure.FileHtmlReportWriter;
-import pl.wojma.funwithxmls.infrastructure.HtmlReportRenderer;
-import pl.wojma.funwithxmls.infrastructure.SmartXmlComparator;
 
 /**
  * Fasada aplikacyjna udostępniająca prostą metodę porównania XML po ścieżkach relatywnych.

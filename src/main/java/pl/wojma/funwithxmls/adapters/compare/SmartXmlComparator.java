@@ -1,4 +1,4 @@
-package pl.wojma.funwithxmls.infrastructure;
+package pl.wojma.funwithxmls.adapters.compare;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -12,21 +12,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
-import pl.wojma.funwithxmls.application.XmlComparator;
+import pl.wojma.funwithxmls.core.model.StructuredNode;
+import pl.wojma.funwithxmls.core.ports.XmlComparator;
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
 import pl.wojma.funwithxmls.domain.DifferenceType;
 import pl.wojma.funwithxmls.domain.FieldDifference;
 import pl.wojma.funwithxmls.domain.OccurrenceStat;
 import pl.wojma.funwithxmls.domain.SummaryMetrics;
-import pl.wojma.funwithxmls.domain.XmlNode;
 
 /**
- * Silnik porównywania XML z obsługą trybu strukturalnego i trybu wartości.
+ * Wspólny silnik porównywania dokumentów strukturalnych (XML/JSON).
  */
 public class SmartXmlComparator implements XmlComparator {
     @Override
-    public ComparisonResult compare(XmlNode left, XmlNode right, String leftSource, String rightSource, ComparisonMode mode) {
+    public ComparisonResult compare(StructuredNode left, StructuredNode right, String leftSource, String rightSource, ComparisonMode mode) {
         XmlSnapshot leftSnapshot = XmlSnapshot.from(left);
         XmlSnapshot rightSnapshot = XmlSnapshot.from(right);
 
@@ -64,12 +64,12 @@ public class SmartXmlComparator implements XmlComparator {
 
             if (leftCount == 0) {
                 result.add(new FieldDifference(path, DifferenceType.RIGHT_ONLY, null, summarizeValues(rightValues), 0, rightCount,
-                        "Pole występuje wyłącznie w drugim XML."));
+                        "Pole występuje wyłącznie w drugim dokumencie."));
                 continue;
             }
             if (rightCount == 0) {
                 result.add(new FieldDifference(path, DifferenceType.LEFT_ONLY, summarizeValues(leftValues), null, leftCount, 0,
-                        "Pole występuje wyłącznie w pierwszym XML."));
+                        "Pole występuje wyłącznie w pierwszym dokumencie."));
                 continue;
             }
 
@@ -118,8 +118,8 @@ public class SmartXmlComparator implements XmlComparator {
 
         List<OccurrenceStat> result = new ArrayList<>();
         for (String objectPath : allObjectPaths.stream().sorted().toList()) {
-            List<XmlNode> leftNodes = leftSnapshot.objectNodesByPath.getOrDefault(objectPath, Collections.emptyList());
-            List<XmlNode> rightNodes = rightSnapshot.objectNodesByPath.getOrDefault(objectPath, Collections.emptyList());
+            List<StructuredNode> leftNodes = leftSnapshot.objectNodesByPath.getOrDefault(objectPath, Collections.emptyList());
+            List<StructuredNode> rightNodes = rightSnapshot.objectNodesByPath.getOrDefault(objectPath, Collections.emptyList());
 
             if (leftNodes.size() <= 1 && rightNodes.size() <= 1) {
                 continue;
@@ -240,13 +240,13 @@ public class SmartXmlComparator implements XmlComparator {
         return table[left.length()][right.length()];
     }
 
-    private String canonicalStructure(XmlNode node) {
+    private String canonicalStructure(StructuredNode node) {
         if (node.children().isEmpty()) {
             return node.name() + "{}";
         }
 
         Map<String, Integer> childSignatureCounter = new LinkedHashMap<>();
-        for (XmlNode child : node.children()) {
+        for (StructuredNode child : node.children()) {
             String childSignature = canonicalStructure(child);
             childSignatureCounter.merge(childSignature, 1, Integer::sum);
         }
@@ -260,15 +260,15 @@ public class SmartXmlComparator implements XmlComparator {
     private static final class XmlSnapshot {
         private final Map<String, Integer> countByPath = new LinkedHashMap<>();
         private final Map<String, List<String>> valuesByPath = new LinkedHashMap<>();
-        private final Map<String, List<XmlNode>> objectNodesByPath = new LinkedHashMap<>();
+        private final Map<String, List<StructuredNode>> objectNodesByPath = new LinkedHashMap<>();
 
-        private static XmlSnapshot from(XmlNode root) {
+        private static XmlSnapshot from(StructuredNode root) {
             XmlSnapshot snapshot = new XmlSnapshot();
             snapshot.visit(root, "");
             return snapshot;
         }
 
-        private void visit(XmlNode node, String parentPath) {
+        private void visit(StructuredNode node, String parentPath) {
             String currentPath = parentPath.isEmpty() ? node.name() : parentPath + "/" + node.name();
             countByPath.merge(currentPath, 1, Integer::sum);
             if (!node.children().isEmpty()) {
@@ -282,7 +282,7 @@ public class SmartXmlComparator implements XmlComparator {
                 countByPath.merge(attributePath, 1, Integer::sum);
                 valuesByPath.computeIfAbsent(attributePath, ignored -> new ArrayList<>()).add(attributeEntry.getValue());
             }
-            for (XmlNode child : node.children()) {
+            for (StructuredNode child : node.children()) {
                 visit(child, currentPath);
             }
         }

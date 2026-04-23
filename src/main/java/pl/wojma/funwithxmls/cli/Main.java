@@ -1,7 +1,8 @@
-package pl.wojma.funwithxmls.entrypoint;
+package pl.wojma.funwithxmls.cli;
 
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 import pl.wojma.funwithxmls.domain.ComparisonResult;
+import pl.wojma.funwithxmls.services.XmlComparisonService;
 
 /**
  * Punkt wejścia CLI dla narzędzia porównywania XML.

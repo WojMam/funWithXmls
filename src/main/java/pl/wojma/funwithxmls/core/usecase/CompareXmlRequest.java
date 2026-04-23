@@ -1,12 +1,12 @@
-package pl.wojma.funwithxmls.application;
+package pl.wojma.funwithxmls.core.usecase;
 
 import pl.wojma.funwithxmls.domain.ComparisonMode;
 
 /**
- * Parametry wejściowe dla przypadku użycia porównania XML.
+ * Parametry wejściowe dla przypadku użycia porównania dokumentów.
  *
- * @param leftRelativePath ścieżka relatywna do pierwszego XML w katalogu resources
- * @param rightRelativePath ścieżka relatywna do drugiego XML w katalogu resources
+ * @param leftRelativePath ścieżka relatywna do pierwszego dokumentu w katalogu resources
+ * @param rightRelativePath ścieżka relatywna do drugiego dokumentu w katalogu resources
  * @param outputRelativePath ścieżka pliku wyjściowego raportu HTML
  * @param mode tryb porównania
  */
